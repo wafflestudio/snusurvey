@@ -31,21 +31,35 @@ class User
   has_many :comments                              # 댓글 
   has_many :like_comments                         # 좋아요 댓글
   has_many :dislike_comments                      # 싫어요 댓글
+  has_many :feedbacks                             # 피드백 글
 
 # validations
   validates :name, :presence => true, :uniqueness => true
-  validates :password, :presence => true, :length => {:minimum => 8}
+  validates :password, :length => {:minimum => 8}
   validates :nickname, :presence => true, :uniqueness => true
 
 # callback
+  before_create :assign_nickname
   before_save :encrypt_password
 
 # method
   def generate_auth_key
   end
 
+  def assign_nickname
+    self.nickname = Time.now + self.mysnu
+  end
+
+  # email
+  def send_auth_key
+    #UserMailer.send_auth_key(u)
+  end
+
   private
   def encrypt_password                  # 암호화된 비밀번호 할당
+    if !self.password_confirmation.nil? && self.password == self.password_confirmation
+      self.password = User.encrypted_password(self.password)
+    end
   end
   def self.encrypted_password(password) # 비밀번호 암호화
   end

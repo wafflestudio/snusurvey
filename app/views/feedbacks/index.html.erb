@@ -1,0 +1,25 @@
+<%= form_for(@feedback) do |f| %>
+   <%= f.label :content %>
+   <%= f.text_field :content %>
+   <% unless signed_in? %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+   <% end %>
+<% end %>
+
+<%= @feedbacks.each do |feedback| %>
+   <div>
+      <%= feedback.content %>
+      <%= feedback.created_at %>
+      <% if feedback.user.nil? %>
+        # 비밀번호 삭제 기능
+      <% else %>
+         <% if current_user != feedback.user %>
+            <%= feedback.user.name %>
+         <% else %>
+            <%= feedback.user.name %>
+            <%= link_to "삭제", feedback_path(feedback), :method =>  :delete, :remote => true %>
+         <% end %>
+      <% end %>
+   </div>
+<% end %>

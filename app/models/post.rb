@@ -1,6 +1,6 @@
 class Post
   include Mongoid::Document
-  include Mongoid::Timesatmps
+  include Mongoid::Timestamps
 
 # feilds
   field :public, type: Boolean, :default => true        # 공개 여부

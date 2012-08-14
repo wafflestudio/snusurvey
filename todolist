@@ -1,0 +1,67 @@
+1. 1차 목표 확정
+ - template 구조 완성
+ - 질문 : 구글독스 기본 포맷
+    |- text field
+    |- text area
+    |- check box
+    |- radio button
+    `- include image
+  - 통계 : 기본 테이블
+    |- 합계 기능
+    |- 필터 기능
+    |- 단순한 원 그래프, 막대 그래프 지원
+    `- csv로 export 기능
+  - shorten url
+  - 추가 기능
+    |- 설문
+    |   |- 한번만 | 여러번 가능
+    |   `- 참가자의 개인정보 저장
+    `- 질문   
+        |- 시간 측정
+        |- 가지 치기 형태
+        `- 랜덤으로 섞기
+
+2. 모델링 확정
+
+3. 디비 시딩
+
+4. admin page
+
+5. main controller & view & 404 page
+
+6. layout
+ - meta
+ - image
+ - and so on
+
+7. authorization
+ - email
+ - mysnu
+ - sync
+    |- facebook
+    `- twitter
+
+8. login
+ - name, password
+ - mysnu
+ - facebook
+ - twitter
+
+9. template
+ - survey
+ - question
+ - result
+
+10. full ajax & design
+
+* shorten url
+* DB
+ - indexing
+ - sharding
+ - seperation
+
+. manual
+. sharing
+ - facebook
+ - twitter
+ - link
