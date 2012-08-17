@@ -1,4 +1,4 @@
-class Paper
+class Paper												#설문지
   include Mongoid::Document
   include Mongoid::Timestamps
 
