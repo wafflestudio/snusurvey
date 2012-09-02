@@ -1,3 +1,4 @@
+# encoding: utf-8
 class FeedbacksController < ApplicationController
   def index
     @feedbacks = Feedback.all

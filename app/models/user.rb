@@ -44,6 +44,9 @@ class User
 
 # method
   def generate_auth_key
+    name = "fasdfadf"
+    puts self.name
+    puts name
   end
 
   def assign_nickname
@@ -55,7 +58,6 @@ class User
     #UserMailer.send_auth_key(u)
   end
 
-  private
   def encrypt_password                  # 암호화된 비밀번호 할당
     if !self.password_confirmation.nil? && self.password == self.password_confirmation
       self.password = User.encrypted_password(self.password)
