@@ -1,0 +1,43 @@
+<div class="table">
+	<table class="listing" cellpadding="0" cellspacing="0">
+		<tr>
+							<th>created_at</th>
+							<th>updated_at</th>
+							<th>title</th>
+							<th>description</th>
+							<th>public</th>
+							<th>perpage</th>
+					</tr>
+		<% @survey_templates.each do |survey_template| -%>
+			<tr>
+									<td>
+													<%= survey_template.created_at %>
+											</td>
+									<td>
+													<%= survey_template.updated_at %>
+											</td>
+									<td>
+													<%= link_to "#{survey_template.title}", admin_survey_template_path(survey_template) %>
+											</td>
+									<td>
+													<%= survey_template.description %>
+											</td>
+									<td>
+													<%= survey_template.public %>
+											</td>
+									<td>
+													<%= survey_template.perpage %>
+											</td>
+							</tr>
+    <% end %>
+		<% if @survey_templates.empty? %>
+      <tr>
+				<td colspan="6">No records</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="actions">
+	<a href="<%= new_admin_survey_template_path %>" class="action add">New SurveyTemplate</a>
+</div>

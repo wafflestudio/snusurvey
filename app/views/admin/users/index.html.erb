@@ -1,0 +1,71 @@
+<div class="table">
+	<table class="listing" cellpadding="0" cellspacing="0">
+		<tr>
+							<th>created_at</th>
+							<th>updated_at</th>
+							<th>name</th>
+							<th>password</th>
+							<th>salt</th>
+							<th>nickname</th>
+							<th>auth</th>
+							<th>expire_time</th>
+							<th>auth_key</th>
+							<th>gender</th>
+							<th>age</th>
+							<th>college</th>
+							<th>department</th>
+					</tr>
+		<% @users.each do |user| -%>
+			<tr>
+									<td>
+													<%= user.created_at %>
+											</td>
+									<td>
+													<%= user.updated_at %>
+											</td>
+									<td>
+													<%= link_to "#{user.name}", admin_user_path(user) %>
+											</td>
+									<td>
+													<%= user.password %>
+											</td>
+									<td>
+													<%= user.salt %>
+											</td>
+									<td>
+													<%= user.nickname %>
+											</td>
+									<td>
+													<%= user.auth %>
+											</td>
+									<td>
+													<%= user.expire_time %>
+											</td>
+									<td>
+													<%= user.auth_key %>
+											</td>
+									<td>
+													<%= user.gender %>
+											</td>
+									<td>
+													<%= user.age %>
+											</td>
+									<td>
+													<%= user.college %>
+											</td>
+									<td>
+													<%= user.department %>
+											</td>
+							</tr>
+    <% end %>
+		<% if @users.empty? %>
+      <tr>
+				<td colspan="13">No records</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="actions">
+	<a href="<%= new_admin_user_path %>" class="action add">New User</a>
+</div>

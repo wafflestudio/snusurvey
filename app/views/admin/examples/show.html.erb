@@ -1,0 +1,26 @@
+
+<div class="table">
+  <table class="listing form" cellpadding="0" cellspacing="0">
+    <tr>
+			<th colspan="2">Example</th>
+		</tr>
+					<tr>
+				<td><strong>content</strong></td>
+				<td><%= @example.content %></td>
+			</tr>
+					<tr>
+				<td><strong>question_id</strong></td>
+				<td><%= @example.question_id %></td>
+			</tr>
+					<tr>
+				<td><strong>reply_ids</strong></td>
+				<td><%= @example.reply_ids %></td>
+			</tr>
+			</table>
+</div>
+
+<div class="actions">
+	<%= link_to 'List', admin_examples_path, :class => "action list" %> |
+	<%= link_to 'Edit', edit_admin_example_path(@example), :class => "action edit" %> |
+	<%= link_to 'Destroy', admin_example_path(@example), :method => :delete, :confirm => "Are you sure?", :class => "action destroy" %>
+</div>

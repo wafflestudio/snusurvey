@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <%= javascript_include_tag "admin/admin" %>
+    <%= stylesheet_link_tag "admin/admin"%>
+    <%= stylesheet_link_tag "admin/auth"%>
+
+    <%= yield :scripts %>
+
+    <%= csrf_meta_tags %>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <a href="#" class="logo"><img src="/assets/admin/logo.png" width="143" height="59" alt="" /></a>
+            <ul id="top-navigation">
+							<li><%= link_to 'Dashboard', admin_path, :class => params[:controller] == 'admin/admin'?"active":""%></li>
+																<li><%= link_to "Board", admin_boards_path, :class => params[:controller]=="admin/boards"?"active":"" %></li>
+									<li><%= link_to "Category", admin_categories_path, :class => params[:controller]=="admin/categories"?"active":"" %></li>
+									<li><%= link_to "Example", admin_examples_path, :class => params[:controller]=="admin/examples"?"active":"" %></li>
+									<li><%= link_to "ExampleTemplate", admin_example_templates_path, :class => params[:controller]=="admin/example_templates"?"active":"" %></li>
+									<li><%= link_to "Feedback", admin_feedbacks_path, :class => params[:controller]=="admin/feedbacks"?"active":"" %></li>
+									<li><%= link_to "Paper", admin_papers_path, :class => params[:controller]=="admin/papers"?"active":"" %></li>
+									<li><%= link_to "Post", admin_posts_path, :class => params[:controller]=="admin/posts"?"active":"" %></li>
+									<li><%= link_to "Question", admin_questions_path, :class => params[:controller]=="admin/questions"?"active":"" %></li>
+									<li><%= link_to "QuestionTemplate", admin_question_templates_path, :class => params[:controller]=="admin/question_templates"?"active":"" %></li>
+									<li><%= link_to "Reply", admin_replies_path, :class => params[:controller]=="admin/replies"?"active":"" %></li>
+									<li><%= link_to "ResultTemplate", admin_result_templates_path, :class => params[:controller]=="admin/result_templates"?"active":"" %></li>
+									<li><%= link_to "Survey", admin_surveys_path, :class => params[:controller]=="admin/surveys"?"active":"" %></li>
+									<li><%= link_to "SurveyTemplate", admin_survey_templates_path, :class => params[:controller]=="admin/survey_templates"?"active":"" %></li>
+									<li><%= link_to "User", admin_users_path, :class => params[:controller]=="admin/users"?"active":"" %></li>
+						</ul>
+        </div>
+        <div id="middle">
+            <div id="left-column">
+              <%= render :partial => 'sidebar' %>
+                
+                <!-- <a href="#" class="link">Link here</a>
+                <a href="#" class="link">Link here</a> -->
+            </div>
+            <div id="center-column">
+              <%= yield %>
+            </div>
+            <div id="right-column">
+                <strong class="h">Quick Info</strong>
+                <div class="box">This is your admin home page. It will give you access to all things within the back end system that you will need to facilitate a smooth operation.</div>
+            </div>
+        </div>
+        <div id="footer"><p>Developed by <a href="http://twitter.com/umutm">Umut Muhaddisoglu</a> 2008. Updated for HTML5/CSS3 by <a href="http://mediagearhead.com">Giles Wells</a> 2010.</p></div>
+    </div>
+</body>
+</html>

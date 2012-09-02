@@ -1,0 +1,78 @@
+
+<%= form_for [:admin, @post] do |f| %>
+  <div class="table">
+    <table class="listing form" cellpadding="0" cellspacing="0">
+			<th class="full" colspan="2">Adding a new Post</th>
+							<tr>
+					<td><strong>created_at</strong></td>
+					<td>
+						<%= f.text_field :created_at%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>updated_at</strong></td>
+					<td>
+						<%= f.text_field :updated_at%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>public</strong></td>
+					<td>
+						<%= f.text_field :public%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>title</strong></td>
+					<td>
+						<%= f.text_field :title%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>content</strong></td>
+					<td>
+						<%= f.text_field :content%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>like_count</strong></td>
+					<td>
+						<%= f.text_field :like_count%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>dislike_count</strong></td>
+					<td>
+						<%= f.text_field :dislike_count%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>admin_id</strong></td>
+					<td>
+						<%= f.text_field :admin_id%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>board_id</strong></td>
+					<td>
+						<%= f.text_field :board_id%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>like_user_ids</strong></td>
+					<td>
+						<%= f.text_field :like_user_ids%>
+					</td>
+				</tr>
+							<tr>
+					<td><strong>dislike_user_ids</strong></td>
+					<td>
+						<%= f.text_field :dislike_user_ids%>
+					</td>
+				</tr>
+				
+    </table>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end -%>

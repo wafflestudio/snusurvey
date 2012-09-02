@@ -1,0 +1,19 @@
+<div class="table">
+	<table class="listing" cellpadding="0" cellspacing="0">
+		<tr>
+					</tr>
+		<% @example_templates.each do |example_template| -%>
+			<tr>
+							</tr>
+    <% end %>
+		<% if @example_templates.empty? %>
+      <tr>
+				<td colspan="0">No records</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="actions">
+	<a href="<%= new_admin_example_template_path %>" class="action add">New ExampleTemplate</a>
+</div>

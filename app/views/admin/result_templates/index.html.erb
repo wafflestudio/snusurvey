@@ -1,0 +1,39 @@
+<div class="table">
+	<table class="listing" cellpadding="0" cellspacing="0">
+		<tr>
+							<th>created_at</th>
+							<th>updated_at</th>
+							<th>title</th>
+							<th>description</th>
+							<th>type</th>
+					</tr>
+		<% @result_templates.each do |result_template| -%>
+			<tr>
+									<td>
+													<%= result_template.created_at %>
+											</td>
+									<td>
+													<%= result_template.updated_at %>
+											</td>
+									<td>
+													<%= link_to "#{result_template.title}", admin_result_template_path(result_template) %>
+											</td>
+									<td>
+													<%= result_template.description %>
+											</td>
+									<td>
+													<%= result_template.type %>
+											</td>
+							</tr>
+    <% end %>
+		<% if @result_templates.empty? %>
+      <tr>
+				<td colspan="5">No records</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="actions">
+	<a href="<%= new_admin_result_template_path %>" class="action add">New ResultTemplate</a>
+</div>
