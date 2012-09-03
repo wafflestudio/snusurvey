@@ -1,5 +1,6 @@
 class Picture
   include Mongoid::Document
+  include Mongoid::Paperclip
 
 # fields
   has_mongoid_attached_file :attachment, # 수정필요

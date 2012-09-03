@@ -16,4 +16,5 @@ class ResultTemplate
 
 # validations
   validates :title, :presence => true, :uniqueness => true
+  validates :type, :numericality => true, :uniqueness => true
 end

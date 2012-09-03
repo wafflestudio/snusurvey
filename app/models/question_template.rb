@@ -19,5 +19,5 @@ class QuestionTemplate
 
 # validations
   validates :title, :presence => true, :uniqueness => true
-  validates :type, :numericality => true # 반드시 우리가 정한 포맷을 의미하는 숫자
+  validates :type, :numericality => true, :uniqueness => true # 반드시 우리가 정한 포맷을 의미하는 숫자
 end

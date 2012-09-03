@@ -15,6 +15,6 @@ class Question
 # validations
   validates :title, :presence => true
 
-  validates :template, :presence => true
+  validates :question_template, :presence => true
   validates :survey, :presence => true
 end

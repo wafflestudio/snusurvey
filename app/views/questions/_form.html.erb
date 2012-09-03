@@ -1,0 +1,7 @@
+<div id="question-<%= question._id %>">
+   <% if question_template.type == 0 %>
+      <%= render :partial => "questions/default_text_field_form", :locals => {:question => question, :question_template_id => question_template._id} %>
+   <% else %>
+   <% end %>
+   <%= link_to_function "Remove", "$('div#question-#{question._id}').remove();" %>
+</div>

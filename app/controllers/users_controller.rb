@@ -4,9 +4,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(:name => params[:user][:name])
+    @user = User.new(params[:user])
     if @user.save
-      @user.send_auth_key
     else
       flash[:error] = "회원가입 실패"
     end

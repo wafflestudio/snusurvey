@@ -1,0 +1,16 @@
+Title: <%= @survey.title %>
+Description: <%= @survey.description %>
+Survey Template: <%= @survey.survey_template.title %>
+Result Template: <%= @survey.result_template.title %>
+<%= link_to "Add Question", question_survey_path %>
+
+<h1>Questions</h1>
+<ul>
+   <% @survey.questions.each do |question| %>
+      <li>
+         Question Template: <%= question.question_template.type %>
+         Title: <%= question.title %>
+         Description: <%= question.description %>
+      </li>
+   <% end %>
+</ul>

@@ -1,5 +1,4 @@
 Snusurvey::Application.routes.draw do
-
   namespace :admin do
     match '/' => 'admin#index'
     match 'login' => 'auth#login'
@@ -21,6 +20,12 @@ Snusurvey::Application.routes.draw do
     resources :users
   end
 
+# signin & signout
+  match "/signin" => "sessions#new", :via => "get"
+  match "/signin" => "sessions#create", :via => "post"
+  match "/signin/facebook" => "sessions#facebook", :via => "post"
+  match "/signin/facebook" => "sessions#oauth", :via => "get"
+  match "/signout" => "sessions#destroy"
 
   # main controller
   root :to => "main#home"
@@ -31,5 +36,11 @@ Snusurvey::Application.routes.draw do
   match "/terms" => "main#terms"
 
   resources :users, :only => [:new, :create]
-  resources :feedbacks, :only => [:index, :create, :destroy]
+
+  resources :surveys, :only => [:new, :create, :show, :update] do
+    match "/question" => "surveys#question", :on => :member
+  end
+
+  resources :questions, :only => [:new] do
+  end
 end

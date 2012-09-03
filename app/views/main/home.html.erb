@@ -1,0 +1,6 @@
+<% if signed_in? %>
+   <%= current_user.fbid %>
+   <%= link_to "Make survey", new_survey_path %>
+<% else %>
+<%= link_to "Facebook Login", signin_facebook_path, :method => "post"  %>
+<% end %>

@@ -1,6 +1,6 @@
 class Comment
   include Mongoid::Document
-  include Mongoid::Tiemstamps
+  include Mongoid::Timestamps
 
 # fields
   field :public, type: Boolean, :default => true      # 공개 여부
