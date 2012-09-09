@@ -6,6 +6,7 @@ class QuestionTemplate
 
   CHECKBOX=1
   RADIOBUTTON=2
+
 # ...
 
 # fields

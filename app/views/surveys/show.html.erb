@@ -1,7 +1,7 @@
-Title: <%= @survey.title %>
+<p>Title: <%= @survey.title %>
 Description: <%= @survey.description %>
 Survey Template: <%= @survey.survey_template.title %>
-Result Template: <%= @survey.result_template.title %>
+Result Template: <%= @survey.result_template.title %></p>
 <%= link_to "Add Question", question_survey_path %>
 
 <h1>Questions</h1>
@@ -11,6 +11,15 @@ Result Template: <%= @survey.result_template.title %>
          Question Template: <%= question.question_template.type %>
          Title: <%= question.title %>
          Description: <%= question.description %>
+         <div id="examples">
+      <% if question.question_template.type == 0 %>
+          <%= render :partial => "questions/default_text_field" %>
+      <% elsif question.question_template.type == 1 %>
+          <%= render :partial => "questions/default_text_field", :locals => {} %>
+      <% elsif question.question_template.type == 2 %>
+          <%= render :partial => "questions/default_text_field", :locals => {} %>
+      <% end %>
+  </div>
       </li>
    <% end %>
 </ul>

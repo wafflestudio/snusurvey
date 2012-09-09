@@ -6,7 +6,13 @@ Result Template: <%= @survey.result_template.title %>
 </div>
 <%= form_for(@survey) do |f| %>
    <div id="questions_of_survey">
-      <%= link_to "Add Question", new_question_path(:survey_id => @survey._id, :question_template_type => 0), :remote => true %>
+      <%= link_to "Add Text Field Question", new_question_path(:survey_id => @survey._id, :question_template_type => 0), :remote => true %>
+      <%= f.fields_for :questions do |question| %>
+      <% end %>
+      <%= link_to "Add Check Box Question", new_question_path(:survey_id => @survey._id, :question_template_type => 1), :remote => true %>
+      <%= f.fields_for :questions do |question| %>
+      <% end %>
+      <%= link_to "Add Radio Button Question", new_question_path(:survey_id => @survey._id, :question_template_type => 2), :remote => true %>
       <%= f.fields_for :questions do |question| %>
       <% end %>
    </div>
