@@ -24,5 +24,18 @@ class Survey
   def admin?(u)
     self.admin == u ? true : false
   end
-  
+
+  def is_entered?(u)
+    self.papers.each do |p|
+      return true if p.user == u
+    end
+    return false
+  end
+
+  def generate_paper(u)
+    self.papers.each do |p|
+      return p if p.user == u
+    end
+    return Paper.create(:user_id => u._id, :survey_id => self._id)
+  end
 end

@@ -37,10 +37,14 @@ Snusurvey::Application.routes.draw do
 
   resources :users, :only => [:new, :create]
 
-  resources :surveys, :only => [:new, :create, :show, :update] do
+  resources :surveys, :only => [:new, :create, :show, :edit, :update] do
     match "/question" => "surveys#question", :on => :member
+    match "/enter" => "surveys#enter", :on => :member
   end
 
   resources :questions, :only => [:new] do
+  end
+
+  resources :papers, :only => [:show] do
   end
 end

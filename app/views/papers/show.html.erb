@@ -1,0 +1,10 @@
+<h3>Title: <%= @survey.title %></h3>
+<p>Content: <%= @survey.description %></p>
+<ol>
+   <% @survey.questions.each do |q| %>
+      <li>
+         <%= q.title %>
+         <%= q.description %>
+      </li>
+   <% end %>
+</ol>
