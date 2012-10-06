@@ -42,7 +42,7 @@ Snusurvey::Application.routes.draw do
     match "/enter" => "surveys#enter", :on => :member
   end
 
-  resources :questions, :only => [:new] do
+  resources :questions, :only => [:new, :update] do
   end
 
   resources :papers, :only => [:show] do
