@@ -28,7 +28,7 @@ class SurveysController < ApplicationController
 
   def update
     @survey =  Survey.find(params[:id])
-    params[:survey][:questions] = params[:survey][:questions].map {|key, value| Question.new(value, :survey_id => @survey._id)}
+    params[:survey][:questions] = params[:survey][:questions].map {|key, value| Question.new(value, :survey_id => @survey._id)} + @survey.questions
     if @survey.update_attributes(params[:survey])
       redirect_to survey_path(@survey)
     else

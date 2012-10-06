@@ -47,4 +47,7 @@ Snusurvey::Application.routes.draw do
 
   resources :papers, :only => [:show] do
   end
+
+  resources :examples, :only => [:new] do
+  end
 end

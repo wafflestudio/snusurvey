@@ -1,0 +1,11 @@
+<div id="example-<%= example._id %>">
+   <% if question_template.type == 0 %>
+       <%= render :partial => "examples/default_text_field_form", :locals => {:example => example} %>
+  <% elsif question_template.type == 1 %>
+      <%= render :partial => "examples/checkbox_form", :locals => {:example => example} %> 
+  <% elsif question_template.type == 2 %>
+      <%= render :partial => "examples/radiobutton_form", :locals => {:example => example} %> 
+  <% else %>
+   <% end %>
+   <%= link_to_function "Remove", "$('div#example-#{example._id}').remove();" %>
+</div>
