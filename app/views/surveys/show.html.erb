@@ -6,20 +6,31 @@ Result Template: <%= @survey.result_template.title %></p>
 
 <h1>Questions</h1>
 <ul>
-   <% @survey.questions.each do |question| %>
-      <li>
-         Question Template: <%= question.question_template.type %>
-         Title: <%= question.title %>
-         Description: <%= question.description %>
-         <div id="examples">
-      <% if question.question_template.type == 0 %>
-          <%= render :partial => "questions/default_text_field" %>
-      <% elsif question.question_template.type == 1 %>
-          <%= render :partial => "questions/default_text_field", :locals => {} %>
-      <% elsif question.question_template.type == 2 %>
-          <%= render :partial => "questions/default_text_field", :locals => {} %>
-      <% end %>
-  </div>
-      </li>
-   <% end %>
+    <% @survey.questions.each do |question| %>
+        <li>
+        Question Template: <%= question.question_template.type %>
+        Title: <%= question.title %>
+        Description: <%= question.description %><br />
+        <% question.examples.each do |example| %>
+            <%= example.content %><br />
+        <% end %>
+        <%= form_for(question) do |q| %>
+            <div id="examples_of_question">
+                <%= link_to "Add Example", new_example_path(:question_id => question._id, :question_template_type => question.question_template.type), :remote => true %>
+                <%= q.fields_for :examples do |example| %>
+                <% end %>
+            </div>
+            <%= q.submit %>
+        <% end %>
+        <div id="examples">
+            <% if question.question_template.type == 0 %>
+                <%= render :partial => "questions/default_text_field" %>
+            <% elsif question.question_template.type == 1 %>
+                <%= render :partial => "questions/default_text_field", :locals => {} %>
+            <% elsif question.question_template.type == 2 %>
+                <%= render :partial => "questions/default_text_field", :locals => {} %>
+            <% end %>
+        </div>
+        </li>
+    <% end %>
 </ul>
