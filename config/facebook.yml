@@ -1,9 +1,8 @@
-development:
+development: &base
    app_id: 340384302721771
    secret_key: 923542491f5bdbe13fddc497c73dc457
+   callback: "http://localhost:4000/signin/facebook"
 test:
-   app_id: 340384302721771
-   secret_key: 923542491f5bdbe13fddc497c73dc457
+  <<: *base
 production:
-   app_id: 340384302721771
-   secret_key: 923542491f5bdbe13fddc497c73dc457
+  <<: *base

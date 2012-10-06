@@ -43,9 +43,9 @@ class SessionsController < ApplicationController
 
   private
   def get_key
-    @app_id = "340384302721771"
-    @secret = "923542491f5bdbe13fddc497c73dc457"
-    @callback = "http://localhost:4000/signin/facebook"
+    @app_id = Facebook::APP_ID
+    @secret = Facebook::SECRET
+    @callback = Facebook::CALLBACK
     @oauth = Koala::Facebook::OAuth.new(@app_id, @secret, @callback)
   end
 end

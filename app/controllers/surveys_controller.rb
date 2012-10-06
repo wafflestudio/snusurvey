@@ -27,7 +27,6 @@ class SurveysController < ApplicationController
   end
 
   def update
-    raise
     @survey =  Survey.find(params[:id])
     params[:survey][:questions] = params[:survey][:questions].map {|key, value| Question.new(value, :survey_id => @survey._id)}
     if @survey.update_attributes(params[:survey])
