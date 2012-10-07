@@ -1,8 +1,11 @@
-Title: <%= @survey.title %>
-Description: <%= @survey.description %>
-Survey Template: <%= @survey.survey_template.title %>
-Result Template: <%= @survey.result_template.title %>
-<%= link_to "Add Question", question_survey_path %>
+<p>
+   Title: <%= @survey.title %>
+   Description: <%= @survey.description %>
+   Survey Template: <%= @survey.survey_template.title %>
+   Result Template: <%= @survey.result_template.title %>
+</p>
+
+<%= link_to "Edit or Add Question", edit_survey_path(@survey) %>
 
 <h1>Questions</h1>
 <ul>
@@ -10,7 +13,12 @@ Result Template: <%= @survey.result_template.title %>
       <li>
          Question Template: <%= question.question_template.type %>
          Title: <%= question.title %>
-         Description: <%= question.description %>
+         Description: <%= question.description %><br />
+         <div class="question-examples">
+            <%= render :partial => "examples/list", :locals => {:examples => question.examples, :question_template_type => question.question_template.type} %>
+         </div>
       </li>
    <% end %>
 </ul>
+
+<%= link_to "Remove", survey_path(@survey), :method => :delete, :confirm => "Are u sure?" %>

@@ -13,7 +13,7 @@ class Question
   has_many :examples, :dependent => :destroy
 
 # validations
-  validates :title, :presence => true
+  #validates :title, :presence => true
 
   validates :question_template, :presence => true
   validates :survey, :presence => true

@@ -1,6 +1,16 @@
 <% if signed_in? %>
    <%= current_user.fbid %>
    <%= link_to "Make survey", new_survey_path %>
+   <h3>Survey List</h3>
+   <ul>
+      <% Survey.all.each do |s| %>
+         <li>
+            <%= link_to s.title, enter_survey_path(s) %> <%= s.is_entered?(current_user) ? "이미 시작함" : "아직 안함" %>
+            <%= link_to "Show", survey_path(s) %>
+            <%= link_to "Edit", edit_survey_path(s) %>
+         </li>
+      <% end %>
+   </ul>
 <% else %>
 <%= link_to "Facebook Login", signin_facebook_path, :method => "post"  %>
 <% end %>

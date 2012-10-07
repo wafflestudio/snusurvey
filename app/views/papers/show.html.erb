@@ -1,0 +1,23 @@
+<h3>Title: <%= @survey.title %></h3>
+<p>Content: <%= @survey.description %></p>
+<%= form_for(@paper) do |f| %>
+  <ol>
+    <% @survey.questions.each do |q| %>
+      <li>
+      <div class="question-title">
+        Title: <%= q.title %>
+      </div>
+      <div class="question-description">
+        Description: <%= q.description %>
+      </div>
+      <div class="question-examples">
+        <%= render :partial => "examples/list", :locals => {:examples => q.examples, :question => q} %>
+      </div>
+      </li>
+    <% end %>
+  </ol>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Submit", complete_paper_path(@paper), :confirm => "Are u sure?" %>
+<%= link_to "Remove", paper_path(@paper), :method => :delete, :confirm => "Are u sure?" %>

@@ -2,6 +2,9 @@ class Reply
   include Mongoid::Document
   include Mongoid::Timestamps
 
+# fields
+  field :content, type: String, :default => ""
+
 # relations
   belongs_to :question      # 질문
   belongs_to :paper         # 설문지

@@ -27,32 +27,38 @@
 
 4. admin page
 
-5. main controller & view & 404 page
-
-6. layout
- - meta
- - image
- - and so on
-
-7. authorization
+5. authorization
  - email
  - mysnu
  - sync
     |- facebook
     `- twitter
-
-8. login
+    
+6. login
  - name, password
  - mysnu
  - facebook
  - twitter
+
+7. main controller & view & 404 page & feedback & post & comment
+
+8. layout
+ - meta
+ - image
+ - and so on
 
 9. template
  - survey
  - question
  - result
 
-10. full ajax & design
+10. survey
+
+11. question
+
+12. result
+
+. full ajax & design
 
 * shorten url
 * DB

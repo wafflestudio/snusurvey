@@ -1,0 +1,31 @@
+<% if question.question_template.type == 0 # default text field %>
+  <ul>
+    <% examples.each do |e| %>
+      <% r = question.replies.where(:question_id => question._id).first %>
+      <% c = r.nil?  ? "" : r.content %>
+      <li>
+        <%= c %>
+      </li>
+    <% end %>
+  </ul>
+<% elsif question.question_template.type == 1 # default radio button %>
+  <ul>
+    <% examples.each do |e| %>
+      <li>
+      <%= label(:examples, e._id, e.content) %>
+      <%= radio_button(:examples, e._id, {:placeholder => e.content}) %>
+      </li>
+    <% end %>
+  </ul>
+<% elsif question.question_template.type == 2 # default checkbox %>
+  <ul>
+    <% examples.each do |e| %>
+      <li>
+      <%= label(:examples, e._id, e.content) %>
+      <%= radio_button(:examples, e._id, {:placeholder => e.content}) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  새로 추가해야할듯
+<% end %>

@@ -36,11 +36,25 @@ Snusurvey::Application.routes.draw do
   match "/terms" => "main#terms"
 
   resources :users, :only => [:new, :create]
-
-  resources :surveys, :only => [:new, :create, :show, :update] do
-    match "/question" => "surveys#question", :on => :member
+  namespace :me do
+    match "/" => "users#me"
+    match "/surveys" => "papers#me"
+    match "/papers" => "papers#me"
   end
 
-  resources :questions, :only => [:new] do
+  resources :surveys, :only => [:new, :create, :show, :edit, :update, :destroy] do
+    match "/enter" => "surveys#enter", :on => :member
+    match "/result" => "surveys#result", :on => :member
+  end
+
+  resources :questions, :only => [:new, :destroy] do
+  end
+
+  resources :papers, :only => [:show, :destroy, :update] do
+    match "/complete" => "papers#complete", :on => :member
+    match "/result" => "papers#result", :on => :member
+  end
+
+  resources :examples, :only => [:new, :destroy] do
   end
 end

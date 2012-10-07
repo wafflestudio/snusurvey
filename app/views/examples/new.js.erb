@@ -1,0 +1,1 @@
+$('#examples-of-question-<%= @example.question._id %>').append('<%= escape_javascript render :partial => "examples/form", :locals => {:example => @example} %>');
