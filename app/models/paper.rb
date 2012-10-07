@@ -8,7 +8,7 @@ class Paper												#설문지
 # relations
   belongs_to :user                                        # 사용자
   belongs_to :survey                                      # 소속 설문
-  has_many :replies, :dependent => true                   # 응답
+  has_many :replies, :dependent => :destroy               # 응답
 
 # validations
   validates :user, :presence => true

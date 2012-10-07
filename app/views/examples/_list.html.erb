@@ -1,0 +1,29 @@
+<% if question_template_type == 0 # default text field %>
+   <ul>
+      <% examples.each do |e| %>
+         <li>
+            <%= text_field(:examples, e._id, {:placeholder => e.content}) %>
+         </li>
+      <% end %>
+   </ul>
+<% elsif question_template_type == 1 # default radio button %>
+   <ul>
+      <% examples.each do |e| %>
+         <li>
+            <%= label(:examples, e._id, e.content) %>
+            <%= radio_button(:examples, e._id, {:placeholder => e.content}) %>
+         </li>
+      <% end %>
+   </ul>
+<% elsif question_template_type == 2 # default checkbox %>
+   <ul>
+      <% examples.each do |e| %>
+         <li>
+            <%= label(:examples, e._id, e.content) %>
+            <%= radio_button(:examples, e._id, {:placeholder => e.content}) %>
+         </li>
+      <% end %>
+   </ul>
+<% else %>
+   새로 추가해야할듯
+<% end %>

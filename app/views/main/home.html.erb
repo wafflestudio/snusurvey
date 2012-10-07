@@ -6,6 +6,7 @@
       <% Survey.all.each do |s| %>
          <li>
             <%= link_to s.title, enter_survey_path(s) %> <%= s.is_entered?(current_user) ? "이미 시작함" : "아직 안함" %>
+            <%= link_to "Show", survey_path(s) %>
             <%= link_to "Edit", edit_survey_path(s) %>
          </li>
       <% end %>

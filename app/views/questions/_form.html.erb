@@ -1,11 +1,14 @@
 <div id="question-<%= question._id %>">
-   <% if question_template.type == 0 %>
-      <%= render :partial => "questions/default_text_field_form", :locals => {:question => question, :question_template_id => question_template._id} %>
-  <% elsif question_template.type == 1 %>
-      <%= render :partial => "questions/checkbox_form", :locals => {:question => question, :question_template_id => question_template._id} %>
-  <% elsif question_template.type == 2 %>
-      <%= render :partial => "questions/radiobutton_form", :locals => {:question => question, :question_template_id => question_template._id} %>
-  <% else %>
-   <% end %>
-   <%= link_to_function "Remove", "$('div#question-#{question._id}').remove();" %>
+   Question Template: <%= question.question_template.type %>
+   Title:
+   <%= text_field_tag "survey[questions][#{question._id}][title]", question.title %>
+   Description:
+   <%= text_field_tag "survey[questions][#{question._id}][description]", question.description %>
+   <div id="examples-of-question-<%= question._id %>">
+      <% question.examples.each do |example| %>
+         <%= render :partial => "examples/form", :locals => {:example => example} %>
+      <% end %>
+      <%= link_to "Add Example", new_example_path(:question_id => question._id), :remote => true %>
+      <%= link_to "Remove", question_path(question), :method => :delete, :remote => true, :confirm => "Are u sure?" %>
+   </div>
 </div>

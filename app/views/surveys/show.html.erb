@@ -1,36 +1,24 @@
-<p>Title: <%= @survey.title %>
-Description: <%= @survey.description %>
-Survey Template: <%= @survey.survey_template.title %>
-Result Template: <%= @survey.result_template.title %></p>
-<%= link_to "Add Question", question_survey_path %>
+<p>
+   Title: <%= @survey.title %>
+   Description: <%= @survey.description %>
+   Survey Template: <%= @survey.survey_template.title %>
+   Result Template: <%= @survey.result_template.title %>
+</p>
+
+<%= link_to "Edit or Add Question", edit_survey_path(@survey) %>
 
 <h1>Questions</h1>
 <ul>
-    <% @survey.questions.each do |question| %>
-        <li>
-        Question Template: <%= question.question_template.type %>
-        Title: <%= question.title %>
-        Description: <%= question.description %><br />
-        <% question.examples.each do |example| %>
-            <%= example.content %><br />
-        <% end %>
-        <%= form_for(question) do |q| %>
-            <div id="examples_of_question">
-                <%= link_to "Add Example", new_example_path(:question_id => question._id, :question_template_type => question.question_template.type), :remote => true %>
-                <%= q.fields_for :examples do |example| %>
-                <% end %>
-            </div>
-            <%= q.submit %>
-        <% end %>
-        <div id="examples">
-            <% if question.question_template.type == 0 %>
-                <%= render :partial => "questions/default_text_field" %>
-            <% elsif question.question_template.type == 1 %>
-                <%= render :partial => "questions/default_text_field", :locals => {} %>
-            <% elsif question.question_template.type == 2 %>
-                <%= render :partial => "questions/default_text_field", :locals => {} %>
-            <% end %>
-        </div>
-        </li>
-    <% end %>
+   <% @survey.questions.each do |question| %>
+      <li>
+         Question Template: <%= question.question_template.type %>
+         Title: <%= question.title %>
+         Description: <%= question.description %><br />
+         <div class="question-examples">
+            <%= render :partial => "examples/list", :locals => {:examples => question.examples, :question_template_type => question.question_template.type} %>
+         </div>
+      </li>
+   <% end %>
 </ul>
+
+<%= link_to "Remove", survey_path(@survey), :method => :delete, :confirm => "Are u sure?" %>

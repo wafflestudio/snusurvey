@@ -1,21 +1,25 @@
 class QuestionsController < ApplicationController
-  before_filter :check_signin, :only => [:new]
+  before_filter :check_signin, :only => [:new, :destroy]
+  before_filter :auth_me, :only => [:destroy]
 
   def new
-    @question = Question.new
-    @survey = Survey.find(params[:survey_id])
-    @question_template = QuestionTemplate.where(:type => params[:question_template_type]).first
-  end
-
-  def update
-    @question = Question.find(params[:id])
-    params[:question][:examples] = params[:question][:examples].map {|key, value| Example.new(value, :question_id => @question._id)} + @question.examples
-    if @question.update_attributes(params[:question])
-        redirect_to survey_path(@question.survey)
+    @question = Question.new(:question_template_id => params[:question_template_id], :survey_id => params[:survey_id])
+    if @question.save
     else
-        logger.info @question.errors.full_messages
-        render 'survey/show'
+      render "main/failure"
     end
   end
 
+  def destroy
+    @question.destroy
+  end
+
+  private
+  def auth_me
+    @question = Question.find(params[:id])
+    if @question.survey.admin == current_user
+    else
+      redirect_to signin_path
+    end
+  end
 end

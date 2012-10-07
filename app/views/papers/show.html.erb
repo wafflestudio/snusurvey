@@ -3,8 +3,18 @@
 <ol>
    <% @survey.questions.each do |q| %>
       <li>
-         <%= q.title %>
-         <%= q.description %>
+         <div class="question-title">
+            Title: <%= q.title %>
+         </div>
+         <div class="question-description">
+            Description: <%= q.description %>
+         </div>
+         <div class="question-examples">
+            <%= render :partial => "examples/list", :locals => {:examples => q.examples, :question_template_type => q.question_template.type} %>
+         </div>
       </li>
    <% end %>
 </ol>
+
+<%= link_to "Submit", complete_paper_path(@paper), :confirm => "Are u sure?" %>
+<%= link_to "Remove", paper_path(@paper), :method => :delete, :confirm => "Are u sure?" %>

@@ -1,0 +1,24 @@
+<h1>Make Suvery</h1>
+<%= form_for(@survey) do |f| %>
+   <%= f.label :title %>
+   <%= f.text_field :title %>
+   <%= f.label :description %>
+   <%= f.text_field :description %>
+   <%= f.label :survey_template %>
+   <%= f.select :survey_template, options_for_select(@survey_templates) %>
+   <%= f.label :result_template %>
+   <%= f.select :result_template, options_for_select(@result_templates) %>
+   <%= f.submit %>
+    <div id="questions-of-survey">
+       Question:
+       <% @survey.questions.each do |question| %>
+          <%= render :partial => "questions/form", :locals => {:question => question} %>
+       <% end %>
+       <% @question_templates.each do |qt_title, qt_id| %>
+          <%= link_to "Add #{qt_title} Question", new_question_path(:survey_id => @survey._id, :question_template_id => qt_id), :remote => true %>
+       <% end %>
+    </div>
+    <%= f.submit %>
+<% end %>
+
+<%= link_to "Remove", survey_path(@survey), :method => :delete, :confirm => "Are u sure?" %>
