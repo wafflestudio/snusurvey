@@ -1,6 +1,6 @@
 development:
-   app_id: 340384302721771
-   secret_key: 923542491f5bdbe13fddc497c73dc457
+   app_id: 111159975701312
+   secret_key: 4444af97c4577a0cfc7d770b0b5f3072
 test:
    app_id: 340384302721771
    secret_key: 923542491f5bdbe13fddc497c73dc457

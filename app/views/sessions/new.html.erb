@@ -1,4 +1,3 @@
-<%= link_to "auth", flash[:msg].html_safe %>
 <%= form_for(:sessions, :url => signin_path, :method => "post") do |f| %>
    <%= f.label :name %>
    <%= f.text_field :name %>
