@@ -38,7 +38,7 @@ Snusurvey::Application.routes.draw do
   resources :users, :only => [:new, :create]
   namespace :me do
     match "/" => "users#me"
-    match "/surveys" => "papers#me"
+    match "/surveys" => "surveys#me"
     match "/papers" => "papers#me"
   end
 

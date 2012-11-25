@@ -15,7 +15,7 @@
          Title: <%= question.title %>
          Description: <%= question.description %><br />
          <div class="question-examples">
-            <%= render :partial => "examples/list", :locals => {:examples => question.examples, :question_template_type => question.question_template.type} %>
+            <%= render :partial => "examples/list", :locals => {:examples => question.examples, :question => question} %>
          </div>
       </li>
    <% end %>

@@ -9,6 +9,7 @@ gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip"
 gem 'thin'
+gem 'eventmachine', '0.12.10'
 
 gem 'koala'
 
