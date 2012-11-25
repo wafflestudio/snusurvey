@@ -16,14 +16,39 @@ class PapersController < ApplicationController
 
   def update
     unless params[:paper][:questions].nil?
-logger.info "###############2"
+      logger.info "###############2"
       params[:paper][:questions] = params[:paper][:questions].map {|key, value|
+        type = value[:type].to_i
         unless value[:examples].nil?
           reply = Reply.find_or_create_by(paper_id: @paper._id, question_id: key)
-          value[:examples].map {|key, value|
-            logger.info value[:content]
-            reply.update_attribute(:content, value[:content])
-          }
+          if type == 0
+            value[:examples].map {|key, value|
+              logger.info value[:content]
+              reply.update_attribute(:content, value[:content])
+            }
+          elsif type == 1
+            examples = []
+
+            example = Example.find(value[:examples])
+            examples.push(example) unless example.nil?
+
+            reply.examples = examples
+            reply.save
+          elsif type == 2
+            examples = []
+
+            value[:examples].map {|key, value|
+              if value == 1
+              	example = Example.find(key)
+                examples.push(example) unless example.nil?
+              end
+            }
+
+            reply.examples = examples
+            reply.save
+          else
+            # todo
+          end
         end
       }
     end

@@ -1,19 +1,25 @@
-<% r = question.replies.where(:question_id => question._id).first %>
+<%
+   c = []
+   hash = {}
+%>
+<% question.replies.where(:question_id => question._id).each do |r| %>
+   <%
+      c.push(r.content) unless r.content.empty?
+      r.examples.each do |e|
+         hash[e._id] = hash.has_key?(e._id) ? hash[e._id] + 1 : 1
+      end 
+   %>
+<% end %>
+
 <% if question.question_template.type == 0 # default text field %>
-   <ul>
-      <% examples.each do |e| %>
-         <% c = r.nil?  ? "" : r.content %>
-         <li>
-            <%= c %>
-         </li>
-      <% end %>
-   </ul>
+   <%= c.to_a %>
 <% elsif question.question_template.type == 1 # default radio button %>
    <ul>
       <% examples.each do |e| %>
          <li>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
+            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id %>
+            Total: <%= hash[e._id].to_i %>
          </li>
       <% end %>
    </ul>
@@ -22,7 +28,8 @@
       <% examples.each do |e| %>
          <li>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= check_box "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
+            <%= check_box "paper[questions][#{question._id}][examples]", e._id %>
+            Total: <%= hash[e._id].to_i %>
          </li>
       <% end %>
    </ul>
