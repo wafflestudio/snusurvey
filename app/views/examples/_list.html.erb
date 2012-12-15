@@ -1,4 +1,4 @@
-<% r = question.replies.where(:question_id => question._id).first %>
+<% r = question.replies.where(:question_id => question._id).last %>
 <%= hidden_field_tag "paper[questions][#{question._id}][type]", question.question_template.type %>
 <% if question.question_template.type == 0 # default text field %>
    <ul>
@@ -13,8 +13,9 @@
    <ul>
       <% examples.each do |e| %>
          <li>
+            <% checked = !r.nil? && r.examples.include?(e) %>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= check_box "paper[questions][#{question._id}][examples]", e._id, :checked => r.examples.include?(e) unless r.nil? %>
+            <%= check_box "paper[questions][#{question._id}][examples]", e._id, :checked => checked %>
          </li>
       <% end %>
    </ul>
@@ -22,8 +23,9 @@
    <ul>
       <% examples.each do |e| %>
          <li>
+            <% checked = !r.nil? && r.examples.include?(e) %>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
+            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, checked %>
          </li>
       <% end %>
    </ul>
