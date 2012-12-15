@@ -20,7 +20,7 @@
           <tr>
             <th scope="row"><%= e.content %></th>
             <% #radio_button_tag "paper[questions][#{question._id}][examples]", e._id %>
-            <td><%= hash[e._id].to_i + 1 %></td>
+            <td><%= hash[e._id].to_i %></td>
         </tr>
       <% end %>
     </tbody>
@@ -32,7 +32,7 @@
       <% examples.each do |e| %>
           <tr>
              <th scope="row"><%= e.content %></th>
-            <td><%= hash[e._id].to_i + 1%></td>
+            <td><%= hash[e._id].to_i %></td>
         </tr>
       <% end %>
     </tbody>
