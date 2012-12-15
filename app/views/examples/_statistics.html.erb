@@ -11,28 +11,33 @@
    %>
 <% end %>
 
-<table>
-    <tbody>
 <% if question.question_template.type == 0 # default text field %>
    <%= c.to_a %>
 <% elsif question.question_template.type == 1 # default radio button %>
+<table>
+    <tbody>
       <% examples.each do |e| %>
           <tr>
             <th scope="row"><%= e.content %></th>
             <% #radio_button_tag "paper[questions][#{question._id}][examples]", e._id %>
-            <td><%= hash[e._id].to_i + 50 %>%</td>
+            <td><%= hash[e._id].to_i + 1 %></td>
         </tr>
       <% end %>
-<% elsif question.question_template.type == 2 # default checkbox %>
-      <% examples.each do |e| %>
-          <tr>
-             <th scope="row"><%= e.content %></th>
-            <td><%= hash[e._id].to_i %>%</td>
-        </tr>
-      <% end %>
-<% else %>
-   새로 추가해야할듯
-<% end %>
     </tbody>
 </table>
 <div id="holder"></div>
+<% elsif question.question_template.type == 2 # default checkbox %>
+<table>
+    <tbody>
+      <% examples.each do |e| %>
+          <tr>
+             <th scope="row"><%= e.content %></th>
+            <td><%= hash[e._id].to_i + 1%></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+<div id="holder"></div>
+<% else %>
+   새로 추가해야할듯
+<% end %>
