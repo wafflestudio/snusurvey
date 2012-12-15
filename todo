@@ -1,7 +1,12 @@
-3. 서베이 결과 보기 + database seeding
-4. 서베이 공지 + 상현 공지 +  우정 공지
-    - 현호 : textarea, seeding
-    - 광래 : graph
-    - 우정 : 디자인, 리크루팅
-    - 아리프, 상현 : 돈
-5. 책 읽기
+1. 로그인 전 후 : 트위터처럼
+2. 개인 survey, paper + topbar
+3. permission(only once on survey)
+4. textarea question + ...
+5. result template 적용
+6. ajax slide + question per page
+
+기타
+1. facebook oauth 붙이기 + 스누 인증 붙이기
+2. facebook share
+3. meta + main controller view
+4. export survey result
