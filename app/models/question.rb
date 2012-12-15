@@ -17,4 +17,24 @@ class Question
 
   validates :question_template, :presence => true
   validates :survey, :presence => true
+
+# callback
+  before_save :check_example_length
+  after_create :create_examples
+
+# methods
+  def create_examples
+    if self.question_template.type == QuestionTemplate::TEXTFIELD
+      example = self.examples.new
+      example.save
+    end
+  end
+
+  def check_example_length
+    if self.question_template.type == QuestionTemplate::TEXTFIELD
+      if self.examples.length > 1
+        self.examples = [self.examples.first]
+      end
+    end
+  end
 end

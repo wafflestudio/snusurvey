@@ -8,10 +8,13 @@ gem 'rails', '3.2.1'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip"
+
 gem 'thin'
 gem 'eventmachine', '0.12.10'
 
 gem 'koala'
+gem 'devise'
+gem 'rails_admin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +29,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'bootstrap-sass'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

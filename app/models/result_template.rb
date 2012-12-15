@@ -2,8 +2,8 @@ class ResultTemplate
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  STICK=1
-  CIRCLE=2
+  STICK=0
+  CIRCLE=1
 # ...
 
 # fields
