@@ -135,6 +135,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   coffee-rails (~> 3.2.1)
+  eventmachine (= 0.12.10)
   jquery-rails
   koala
   mongoid
