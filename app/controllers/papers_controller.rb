@@ -29,20 +29,20 @@ class PapersController < ApplicationController
           elsif type == 1
             examples = []
 
-            example = Example.find(value[:examples])
-            examples.push(example) unless example.nil?
+            value[:examples].map {|key, value|
+              if value.to_i == 1
+              	example = Example.find(key)
+                examples.push(example) unless example.nil?
+              end
+            }
 
             reply.examples = examples
             reply.save
           elsif type == 2
             examples = []
 
-            value[:examples].map {|key, value|
-              if value == 1
-              	example = Example.find(key)
-                examples.push(example) unless example.nil?
-              end
-            }
+            example = Example.find(value[:examples])
+            examples.push(example) unless example.nil?
 
             reply.examples = examples
             reply.save

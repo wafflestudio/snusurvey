@@ -9,21 +9,21 @@
          </li>
       <% end %>
    </ul>
-<% elsif question.question_template.type == 1 # default radio button %>
+<% elsif question.question_template.type == 1 # default checkbox %>
+   <ul>
+      <% examples.each do |e| %>
+         <li>
+            <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
+            <%= check_box "paper[questions][#{question._id}][examples]", e._id, :checked => r.examples.include?(e) unless r.nil? %>
+         </li>
+      <% end %>
+   </ul>
+<% elsif question.question_template.type == 2 # default radiobutton %>
    <ul>
       <% examples.each do |e| %>
          <li>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
             <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
-         </li>
-      <% end %>
-   </ul>
-<% elsif question.question_template.type == 2 # default checkbox %>
-   <ul>
-      <% examples.each do |e| %>
-         <li>
-            <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= check_box "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
          </li>
       <% end %>
    </ul>
