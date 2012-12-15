@@ -1,4 +1,10 @@
-<% r = question.replies.where(:question_id => question._id).first %>
+<% if layout == Survey %>
+  <% r = nil %>
+<% elsif layout == Paper %>
+  <% paper = @paper %>
+  <% r = paper.replies.where(:question_id => question._id).first %>
+  <%= hidden_field_tag "paper[questions][#{question._id}][type]", question.question_template.type %>
+<% end %>
 <% if question.question_template.type == 0 # default text field %>
    <ul>
       <% examples.each do |e| %>
@@ -8,21 +14,23 @@
          </li>
       <% end %>
    </ul>
-<% elsif question.question_template.type == 1 # default radio button %>
+<% elsif question.question_template.type == 1 # default checkbox %>
    <ul>
       <% examples.each do |e| %>
          <li>
+            <% checked = !r.nil? && r.examples.include?(e) %>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
+            <%= check_box "paper[questions][#{question._id}][examples]", e._id, :checked => checked %>
          </li>
       <% end %>
    </ul>
-<% elsif question.question_template.type == 2 # default checkbox %>
+<% elsif question.question_template.type == 2 # default radio button %>
    <ul>
       <% examples.each do |e| %>
          <li>
+            <% checked = !r.nil? && r.examples.include?(e) %>
             <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= check_box "paper[questions][#{question._id}][examples]", e._id, r.examples.include?(e) unless r.nil? %>
+            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, checked %>
          </li>
       <% end %>
    </ul>

@@ -15,10 +15,11 @@
          Title: <%= question.title %>
          Description: <%= question.description %><br />
          <div class="question-examples">
-            <%= render :partial => "examples/list", :locals => {:examples => question.examples, :question => question} %>
+            <%= render :partial => "examples/list", :locals => {:layout => Survey, :examples => question.examples, :question => question} %>
          </div>
       </li>
    <% end %>
 </ul>
 
 <%= link_to "Remove", survey_path(@survey), :method => :delete, :confirm => "Are u sure?" %>
+<%= link_to "Result", result_survey_path(@survey) %>

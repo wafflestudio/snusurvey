@@ -11,7 +11,7 @@
         Description: <%= q.description %>
       </div>
       <div class="question-examples">
-        <%= render :partial => "examples/list", :locals => {:examples => q.examples, :question => q} %>
+        <%= render :partial => "examples/list", :locals => {:layout => Paper, :examples => q.examples, :question => q} %>
       </div>
       </li>
     <% end %>

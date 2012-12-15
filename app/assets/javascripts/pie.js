@@ -7,7 +7,13 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
             x2 = cx + r * Math.cos(-endAngle * rad),
             y1 = cy + r * Math.sin(-startAngle * rad),
             y2 = cy + r * Math.sin(-endAngle * rad);
-        return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+        if(endAngle - startAngle == 360) {
+          x2 = x1 - 2 * r;
+          return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x1, y1, "z"]).attr(params);
+        }
+        else {
+          return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+        }
     }
     var angle = 0,
         total = 0,
@@ -21,7 +27,7 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
                 delta = 30,
                 bcolor = Raphael.hsb(start, 1, 1),
                 p = sector(cx, cy, r, angle, angle + angleplus, {fill: "90-" + bcolor + "-" + color, stroke: stroke, "stroke-width": 3}),
-                txt = paper.text(cx + (r + delta + 55) * Math.cos(-popangle * rad), cy + (r + delta + 25) * Math.sin(-popangle * rad), labels[j]).attr({fill: bcolor, stroke: "none", opacity: 0, "font-size": 20});
+                txt = paper.text(cx + (r + delta + 20) * Math.cos(-popangle * rad), cy + (r + delta + 25) * Math.sin(-popangle * rad), labels[j]+"("+value+")").attr({fill: color, stroke: color, opacity: 1, "font-size": 20});
             p.mouseover(function () {
                 p.stop().animate({transform: "s1.1 1.1 " + cx + " " + cy}, ms, "elastic");
                 txt.stop().animate({opacity: 1}, ms, "elastic");
@@ -38,18 +44,9 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
         total += values[i];
     }
     for (i = 0; i < ii; i++) {
+      if(values[i] > 0) {
         process(i);
+      }
     }
     return chart;
 };
-
-$(function () {
-    var values = [],
-        labels = [];
-    $("tr").each(function () {
-        values.push(parseInt($("td", this).text(), 10));
-        labels.push($("th", this).text());
-    });
-    $("table").hide();
-    Raphael("holder", 375, 375).pieChart(175, 175, 100, values, labels, "#fff");
-});

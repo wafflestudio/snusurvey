@@ -1,24 +1,7 @@
 Snusurvey::Application.routes.draw do
-  namespace :admin do
-    match '/' => 'admin#index'
-    match 'login' => 'auth#login'
-    match 'logout' => 'auth#logout'
-    match 'authorize' => 'auth#authorize'
-    resources :boards
-    resources :categories
-    resources :examples
-    resources :example_templates
-    resources :feedbacks
-    resources :papers
-    resources :posts
-    resources :questions
-    resources :question_templates
-    resources :replies
-    resources :result_templates
-    resources :surveys
-    resources :survey_templates
-    resources :users
-  end
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
 
 # signin & signout
   match "/signin" => "sessions#new", :via => "get"

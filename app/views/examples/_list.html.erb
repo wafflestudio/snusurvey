@@ -1,5 +1,11 @@
-<% r = question.replies.where(:question_id => question._id).last %>
-<%= hidden_field_tag "paper[questions][#{question._id}][type]", question.question_template.type %>
+<% if layout == Survey %>
+  <% r = nil %>
+<% elsif layout == Paper %>
+  <% paper = @paper %>
+  <% r = paper.replies.where(:question_id => question._id).first %>
+  <%= hidden_field_tag "paper[questions][#{question._id}][type]", question.question_template.type %>
+<% end %>
+
 <% if question.question_template.type == 0 # default text field %>
    <ul>
       <% examples.each do |e| %>

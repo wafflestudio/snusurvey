@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   before_filter :check_signin
-  before_filter :auth_me, :only => [:show, :complete, :result, :destroy, :update]
+#  before_filter :auth_me, :only => [:show, :complete, :result, :destroy, :update]
 
   def show
     @survey = @paper.survey

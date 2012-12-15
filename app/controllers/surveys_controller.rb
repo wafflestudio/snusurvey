@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   before_filter :check_signin, :only => [:new, :create, :show, :update, :reply, :edit, :destroy, :me]
-  before_filter :auth_me, :only => [:show, :update, :edit, :destroy]
+#  before_filter :auth_me, :only => [:show, :update, :edit, :destroy]
 
   def new
     @survey = Survey.new

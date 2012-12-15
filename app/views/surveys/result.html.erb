@@ -1,3 +1,20 @@
+<script type="text/javascript">
+  $(function () {
+      $('table.example-statistics').each(function() {
+        var values = [],
+        labels = [],
+        table = this;
+        //$("tr").each(function () {
+        $(table).find("tr").each(function () {
+          values.push(parseInt($("td", this).text(), 10));
+          labels.push($("th", this).text());
+        });
+        $(table).hide();
+        Raphael("holder-"+$(table).attr('holder'), 375, 375).pieChart(175, 175, 100, values, labels, "#fff");
+      });
+  });
+</script>
+
 <h3>Title: <%= @survey.title %></h3>
 <p>Content: <%= @survey.description %></p>
 <ol>

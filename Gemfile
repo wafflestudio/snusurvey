@@ -13,6 +13,7 @@ gem 'thin'
 gem 'eventmachine', '0.12.10'
 
 gem 'koala'
+
 gem 'devise'
 gem 'rails_admin'
 
