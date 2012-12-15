@@ -11,28 +11,28 @@
    %>
 <% end %>
 
+<table>
+    <tbody>
 <% if question.question_template.type == 0 # default text field %>
    <%= c.to_a %>
 <% elsif question.question_template.type == 1 # default radio button %>
-   <ul>
       <% examples.each do |e| %>
-         <li>
-            <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id %>
-            Total: <%= hash[e._id].to_i %>
-         </li>
+          <tr>
+            <th scope="row"><%= e.content %></th>
+            <% #radio_button_tag "paper[questions][#{question._id}][examples]", e._id %>
+            <td><%= hash[e._id].to_i + 50 %>%</td>
+        </tr>
       <% end %>
-   </ul>
 <% elsif question.question_template.type == 2 # default checkbox %>
-   <ul>
       <% examples.each do |e| %>
-         <li>
-            <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= check_box "paper[questions][#{question._id}][examples]", e._id %>
-            Total: <%= hash[e._id].to_i %>
-         </li>
+          <tr>
+             <th scope="row"><%= e.content %></th>
+            <td><%= hash[e._id].to_i %>%</td>
+        </tr>
       <% end %>
-   </ul>
 <% else %>
    새로 추가해야할듯
 <% end %>
+    </tbody>
+</table>
+<div id="holder"></div>
