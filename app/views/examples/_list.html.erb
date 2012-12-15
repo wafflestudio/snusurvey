@@ -3,9 +3,9 @@
 <% if question.question_template.type == 0 # default text field %>
    <ul>
       <% examples.each do |e| %>
-         <li>
-            <% c = r.nil?  ? "" : r.content %>
-            <%= text_field_tag "paper[questions][#{question._id}][examples][#{e._id}][content]", c, {:placeholder => e.content} %>
+        <li>
+          <% c = r.nil?  ? "" : r.content %>
+          <%= text_field_tag "paper[questions][#{question._id}][examples][#{e._id}][content]", c, {:placeholder => e.content} %>
          </li>
       <% end %>
    </ul>
@@ -18,7 +18,7 @@
          </li>
       <% end %>
    </ul>
-<% elsif question.question_template.type == 2 # default radiobutton %>
+<% elsif question.question_template.type == 2 # default radio button %>
    <ul>
       <% examples.each do |e| %>
          <li>

@@ -3,7 +3,6 @@ class QuestionTemplate
   include Mongoid::Timestamps
 
   TEXTFIELD=0
-
   CHECKBOX=1
   RADIOBUTTON=2
 
