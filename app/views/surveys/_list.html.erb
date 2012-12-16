@@ -10,5 +10,9 @@
       <span class="label <%= "label-important" if survey.admin == current_user %>"><i class="icon-user"></i><%= link_to survey.admin.fbid, User.fb_link(survey.admin.fbid), :style => "color: #fff", :target => "_blank" %></span>
     </div>
     <h3 class="survey-title"><%= link_to "#{survey.title} [#{survey.papers.count}]", enter_survey_path(survey) %></h3>
+    <% if survey.admin == current_user %>
+      <%= link_to "보기", survey_path(survey), :class => "btn" %>
+      <%= link_to "수정", edit_survey_path(survey), :class => "btn" %>
+    <% end %>
   </div>
 <% end %>
