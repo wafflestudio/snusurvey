@@ -1,0 +1,2 @@
+<h3>내가 만든 질문 <%= link_to "만들기", new_survey_path, :class => "btn" %></h3>
+<%= render :partial => "surveys/list", :locals => {:surveys => current_user.surveys} %>

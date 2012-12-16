@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   before_filter :check_signin
-#  before_filter :auth_me, :only => [:show, :complete, :result, :destroy, :update]
+  before_filter :auth_me, :only => [:show, :complete, :result, :destroy, :update]
 
   def show
     @survey = @paper.survey
@@ -75,9 +75,11 @@ class PapersController < ApplicationController
   private
   def auth_me
     @paper = Paper.find(params[:id])
+=begin
     if @paper.user == nil || signed_in? && @paper.user == current_user
     else
       redirect_to signin_path
     end
+=end
   end
 end

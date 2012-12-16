@@ -1,12 +1,32 @@
-<h1>Make Suvery</h1>
-<%= form_for(@survey) do |f| %>
-   <%= f.label :title %>
-   <%= f.text_field :title %>
-   <%= f.label :description %>
-   <%= f.text_field :description %>
-   <%= f.label :survey_template %>
-   <%= f.select :survey_template, options_for_select(@survey_templates) %>
-   <%= f.label :result_template %>
-   <%= f.select :result_template, options_for_select(@result_templates) %>
-   <%= f.submit %>
+<h3>설문 만들기</h3>
+<%= form_for(@survey, :html => {:class => "form-horizontal"}) do |f| %>
+  <div class="control-group">
+    <%= f.label :title, "주제", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, "설명", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :description, :size => "400x5" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :survey_template, "설문 템플릿", :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :survey_template, options_for_select(@survey_templates) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :result_template, "결과 템플릿", :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :result_template, options_for_select(@result_templates) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "만들기", :class => "btn" %>
+    </div>
+  </div>
 <% end %>

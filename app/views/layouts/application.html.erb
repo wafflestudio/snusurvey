@@ -42,6 +42,25 @@
               <li><%= link_to "Terms", terms_path %></li>
             </ul>
           </div><!--/.nav-collapse -->
+          <div class="btn-group pull-right">
+            <% if signed_in? %>
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i> <%= current_user.fbid %>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= me_users_path %>"><i class="icon-cog"></i> 프로필</a></li>
+                <li><a href="<%= me_surveys_path %>"><i class="icon-list-alt"></i> 내가 만든 질문</a></li>
+                <li><a href="<%= me_papers_path %>"><i class="icon-pencil"></i> 내가 답한 질문</a></li>
+                <li class="divider"></li>
+                <li><a href="<%= signout_path %>"><i class="icon-off"></i> 로그아웃</a></li>
+              </ul>
+            </div>
+          <% else %>
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="<%= signin_facebook_path %>" data-method="post">
+              Facebook Login
+            </a>
+          <% end %>
         </div>
       </div>
     </div>

@@ -1,0 +1,14 @@
+<% surveys.each do |survey| %>
+  <div class="well">
+    <div>
+      <% if survey.is_entered?(current_user) %>
+        <span class="label label-info">참여</span>
+      <% else %>
+        <span class="label label-success">미참여</span>
+      <% end %>
+      <span class="label label-inverse"><%= survey.created_at %></span>
+      <span class="label <%= "label-important" if survey.admin == current_user %>"><i class="icon-user"></i><%= link_to survey.admin.fbid, User.fb_link(survey.admin.fbid), :style => "color: #fff", :target => "_blank" %></span>
+    </div>
+    <h3 class="survey-title"><%= link_to "#{survey.title} [#{survey.papers.count}]", enter_survey_path(survey) %></h3>
+  </div>
+<% end %>

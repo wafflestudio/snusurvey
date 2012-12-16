@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require raphael
 //= require pie
+//= require bootstrap-dropdown

@@ -19,10 +19,10 @@ Snusurvey::Application.routes.draw do
   match "/terms" => "main#terms", :as => "terms"
 
   resources :users, :only => [:new, :create]
-  namespace :me do
-    match "/" => "users#me"
-    match "/surveys" => "surveys#me"
-    match "/papers" => "papers#me"
+  scope "/me" do
+    get "/" => "users#me", :as => "me_users"
+    get "/surveys" => "surveys#me", :as => "me_surveys"
+    get "/papers" => "papers#me", :as => "me_papers"
   end
 
   resources :surveys, :only => [:new, :create, :show, :edit, :update, :destroy] do

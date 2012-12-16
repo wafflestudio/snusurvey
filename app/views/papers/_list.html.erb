@@ -1,0 +1,13 @@
+<% papers.each do |paper| %>
+  <div class="well">
+    <div>
+      <% if paper.completed %>
+        <span class="label label-info">응답완료</span>
+      <% else %>
+        <span class="label label-success">진행 중</span>
+      <% end %>
+      <span class="label label-inverse"><%= paper.created_at %></span>
+    </div>
+    <h3 class="paper-title"><%= link_to paper.survey.title, paper_path(paper) %></h3>
+  </div>
+<% end %>

@@ -23,7 +23,7 @@ class User
   field :department, type: String                 # 학부 ex) 컴퓨터공학부
 
 # relations
-  has_many :surveys                               # 설문
+  has_many :surveys, :class_name => "Survey", :inverse_of => :admin       # 설문
   has_many :papers                                # 설문지
   has_many :posts, :class_name => "Post", :inverse_of => :admin                                 # 쓴 글
   has_and_belongs_to_many :like_posts, :class_name => "Post", :inverse_of => :like_uesrs                            # 좋아요 글
@@ -77,5 +77,8 @@ class User
   end
   def self.authenticate_with_salt(id, salt)
     user = User.where(:_id => id, :salt => salt).first
+  end
+  def self.fb_link(fbid)
+    "https://facebook.com/#{fbid}"
   end
 end
