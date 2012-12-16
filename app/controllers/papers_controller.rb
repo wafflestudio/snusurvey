@@ -4,6 +4,9 @@ class PapersController < ApplicationController
 
   def show
     @survey = @paper.survey
+    if @paper.completed
+      redirect_to result_paper_path(@paper)
+    end
   end
 
   def complete
