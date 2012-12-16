@@ -1,14 +1,21 @@
-<div id="question-<%= question._id %>">
-   Question Template: <%= question.question_template.type %>
-   Title:
-   <%= text_field_tag "survey[questions][#{question._id}][title]", question.title %>
-   Description:
-   <%= text_field_tag "survey[questions][#{question._id}][description]", question.description %>
-   <div id="examples-of-question-<%= question._id %>">
+<div class="well" id="question-<%= question._id %>">
+  <div>
+    <span class="label"><%= question.question_template.title %></span>
+    질문
+    <%= text_field_tag "survey[questions][#{question._id}][title]", question.title %>
+    설명
+    <%= text_field_tag "survey[questions][#{question._id}][description]", question.description %>
+<br />
+  </div>
+  <div id="examples-of-question-<%= question._id %>">
+    <ul>
       <% question.examples.each do |example| %>
-         <%= render :partial => "examples/form", :locals => {:example => example} %>
+        <li>
+        <%= render :partial => "examples/form", :locals => {:example => example} %>
+        </li>
       <% end %>
-      <%= link_to "Add Example", new_example_path(:question_id => question._id), :remote => true %>
-      <%= link_to "Remove", question_path(question), :method => :delete, :remote => true, :confirm => "Are u sure?" %>
-   </div>
+    </ul>
+    <%= link_to "질문 추가하기", new_example_path(:question_id => question._id), :remote => true, :class => "btn" %>
+    <%= link_to "질문 삭제하기", question_path(question), :method => :delete, :remote => true, :confirm => "Are u sure?", :class => "btn" %>
+  </div>
 </div>

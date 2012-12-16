@@ -15,20 +15,36 @@
   });
 </script>
 
-<h3>Title: <%= @survey.title %></h3>
-<p>Content: <%= @survey.description %></p>
-<ol>
-   <% @survey.questions.each do |q| %>
-      <li>
-         <div class="question-title">
-            Title: <%= q.title %>
-         </div>
-         <div class="question-description">
-            Description: <%= q.description %>
-         </div>
-         <div class="question-examples">
-            <%= render :partial => "examples/statistics", :locals => {:examples => q.examples, :question => q} %>
-         </div>
-      </li>
-   <% end %>
-</ol>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>주제</td>
+      <td colspan="3"><%= @survey.title %></td>
+    </tr>
+    <tr>
+      <td>설명</td>
+      <td colspan="3"><%= @survey.description %></td>
+    </tr>
+    <tr>
+      <td>설문 템플릿</td>
+      <td><%= @survey.survey_template.title %></td>
+      <td>결과 템플릿</td>
+      <td><%= @survey.result_template.title %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% @survey.questions.each do |question| %>
+  <div class="well">
+    <span class="label"><%= question.question_template.title %></span>
+    <div>
+      <p><span class="label">질문</span> <%= question.title %></p>
+      <% if !question.description.empty? %>
+        <p><span class="label">설명</span><%= question.description %></p>
+      <% end %>
+    </div>
+    <div class="question-examples">
+      <%= render :partial => "examples/statistics", :locals => {:examples => question.examples, :question => question} %>
+    </div>
+  </div>
+<% end %>

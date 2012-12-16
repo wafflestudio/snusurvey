@@ -1,23 +1,49 @@
-<h1>Make Suvery</h1>
-<%= form_for(@survey) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :survey_template %>
-  <%= f.select :survey_template, options_for_select(@survey_templates) %>
-  <%= f.label :result_template %>
-  <%= f.select :result_template, options_for_select(@result_templates) %>
-  <div id="questions-of-survey">
-    Question:
-    <% @survey.questions.each do |question| %>
-      <%= render :partial => "questions/form", :locals => {:question => question} %>
-    <% end %>
-    <% @question_templates.each do |qt_title, qt_id| %>
-      <%= link_to "Add #{qt_title} Question", new_question_path(:survey_id => @survey._id, :question_template_id => qt_id), :remote => true %>
-    <% end %>
+<h3>설문 수정하기</h3>
+<%= form_for(@survey, :html => {:class => "form-horizontal"}) do |f| %>
+  <div class="control-group">
+    <%= f.label :title, "주제", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
   </div>
-  <%= f.submit %>
+  <div class="control-group">
+    <%= f.label :description, "설명", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :description, :size => "400x5" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :survey_template, "설문 템플릿", :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :survey_template, options_for_select(@survey_templates) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :result_template, "결과 템플릿", :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :result_template, options_for_select(@result_templates) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      질문들
+    </div>
+    <div class="controls" id="questions-of-survey">
+      <div class="well">
+        <% @question_templates.each do |qt_title, qt_id| %>
+          <%= link_to "#{qt_title} 질문 추가하기", new_question_path(:survey_id => @survey._id, :question_template_id => qt_id), :remote => true, :class => "btn" %>
+        <% end %>
+      </div>
+      <% @survey.questions.each do |question| %>
+        <%= render :partial => "questions/form", :locals => {:question => question} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "수정하기", :class => "btn" %>
+      <%= link_to "삭제하기", survey_path(@survey), :method => :delete, :confirm => "Are u sure?", :class => "btn" %>
+    </div>
+  </div>
 <% end %>
 
-<%= link_to "Remove", survey_path(@survey), :method => :delete, :confirm => "Are u sure?" %>

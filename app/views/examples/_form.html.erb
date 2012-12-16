@@ -7,5 +7,5 @@
       <%= render :partial => "examples/default_radio_button_form", :locals => {:example => example} %>
    <% else %>
    <% end %>
-   <%= link_to "Remove", example_path(example), :method => :delete, :remote => true, :confirm => "Are u sure?" %>
+   <%= link_to "삭제하기", example_path(example), :method => :delete, :remote => true, :confirm => "Are u sure?" %>
 </div>

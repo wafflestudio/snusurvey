@@ -6,35 +6,35 @@
   <%= hidden_field_tag "paper[questions][#{question._id}][type]", question.question_template.type %>
 <% end %>
 
-<% if question.question_template.type == 0 # default text field %>
-   <ul>
-      <% examples.each do |e| %>
-        <li>
-          <% c = r.nil?  ? "" : r.content %>
-          <%= text_field_tag "paper[questions][#{question._id}][examples][#{e._id}][content]", c, {:placeholder => e.content} %>
-         </li>
-      <% end %>
-   </ul>
-<% elsif question.question_template.type == 1 # default checkbox %>
-   <ul>
-      <% examples.each do |e| %>
-         <li>
-            <% checked = !r.nil? && r.examples.include?(e) %>
-            <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= check_box "paper[questions][#{question._id}][examples]", e._id, :checked => checked %>
-         </li>
-      <% end %>
-   </ul>
-<% elsif question.question_template.type == 2 # default radio button %>
-   <ul>
-      <% examples.each do |e| %>
-         <li>
-            <% checked = !r.nil? && r.examples.include?(e) %>
-            <%= label_tag "paper[questions][#{question._id}][examples][#{e._id}]", e.content %>
-            <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, checked %>
-         </li>
-      <% end %>
-   </ul>
-<% else %>
-   새로 추가해야할듯
-<% end %>
+<ul>
+  <% if question.question_template.type == 0 # default text field %>
+    <% examples.each do |e| %>
+      <li>
+      <% c = r.nil? ? "" : r.content %>
+      <%= text_field_tag "paper[questions][#{question._id}][examples][#{e._id}][content]", c, {:placeholder => e.content} %>
+      </li>
+    <% end %>
+  <% elsif question.question_template.type == 1 # default checkbox %>
+    <% examples.each do |e| %>
+      <li>
+      <% checked = !r.nil? && r.examples.include?(e) %>
+      <label class="checkbox" for="paper_questions_<%= question._id %>_examples_<%= e._id %>">
+        <%= check_box "paper[questions][#{question._id}][examples]", e._id, :checked => checked %>
+        <%= e.content %>
+      </label>
+      </li>
+    <% end %>
+  <% elsif question.question_template.type == 2 # default radio button %>
+    <% examples.each do |e| %>
+      <li>
+      <% checked = !r.nil? && r.examples.include?(e) %>
+      <label class="radio" for="paper_questions_<%= question._id %>_examples_<%= e._id %>">
+        <%= radio_button_tag "paper[questions][#{question._id}][examples]", e._id, checked %>
+        <%= e.content %>
+      </label>
+      </li>
+    <% end %>
+  <% else %>
+    새로 추가해야할듯
+  <% end %>
+</ul>
