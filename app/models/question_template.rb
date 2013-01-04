@@ -5,6 +5,7 @@ class QuestionTemplate
   TEXTFIELD=0
   CHECKBOX=1
   RADIOBUTTON=2
+  TEXT=3
 
 # ...
 
