@@ -15,3 +15,4 @@
 //= require raphael
 //= require pie
 //= require bootstrap-dropdown
+//= require swipe
