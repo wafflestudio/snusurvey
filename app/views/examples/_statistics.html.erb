@@ -14,7 +14,9 @@
 <div id="holder">
 </div>
 <% if question.question_template.type == 0 # default text field %>
-  <%= c.to_a %>
+  <div class="example-tagcloud" holder="<%= question._id %>">
+    <%= c.to_a %>
+  </div>
 <% elsif question.question_template.type == 1 # default checkbox %>
   <table class="example-statistics" holder="<%= question._id %>">
     <tbody>

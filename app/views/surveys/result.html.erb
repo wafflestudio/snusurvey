@@ -1,5 +1,44 @@
 <script type="text/javascript">
   $(function () {
+      // For the Tag Cloud
+      $('.example-tagcloud').each(function () {
+
+        var fill = d3.scale.category20();
+        var holder = this;
+        var values = JSON.parse($('.example-tagcloud').text());
+
+        d3.layout.cloud().size([300, 300])
+          .words(values.map(function(d) {
+              return {text: d, size: 10 + Math.random() * 90};
+              }))
+          .rotate(function() { return ~~(Math.random() * 2) * 90; })
+          .font("Impact")
+          .fontSize(function(d) { return d.size; })
+          .on("end", draw)
+          .start();
+  
+          function draw(words) {
+            d3.select(holder).append("svg")
+            .attr("width", 300)
+            .attr("height", 300)
+            .append("g")
+            .attr("transform", "translate(150,150)")
+            .selectAll("text")
+            .data(words)
+            .enter().append("text")
+            .style("font-size", function(d) { return d.size + "px"; })
+            .style("font-family", "Impact")
+            .style("fill", function(d, i) { return fill(i); })
+            .attr("text-anchor", "middle")
+            .attr("transform", function(d) {
+                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+            .text(function(d) { return d.text; });
+        }
+
+      });
+
+      // For the Pie and Bar Chart
       $('table.example-statistics').each(function() {
         var values = [],
         labels = [],
@@ -10,7 +49,29 @@
           labels.push($("th", this).text());
         });
         $(table).hide();
-        Raphael("holder-"+$(table).attr('holder'), 375, 375).pieChart(175, 175, 100, values, labels, "#fff");
+
+        var resultTemplate = <%= @survey.result_template.type %>;
+        if (resultTemplate == 1)    // Pie Chart 
+        {       
+          Raphael("holder-"+$(table).attr('holder'), 375, 375).pieChart(175, 175, 100, values, labels, "#fff");
+        }
+        else if (resultTemplate == 0)   // Bar Chart
+        {  
+          var labels_new = [''].concat(labels);
+          var values_new = [''].concat(values);
+
+          function drawVisualization() {
+            var wrapper = new google.visualization.ChartWrapper({
+                  chartType: 'ColumnChart',
+                  dataTable: [labels_new, values_new],
+                  options: {'title': 'Title'},
+                  containerId: "holder-"+$(table).attr('holder')
+                  });
+            wrapper.draw();
+          }
+          
+          drawVisualization();
+        }
       });
   });
 </script>

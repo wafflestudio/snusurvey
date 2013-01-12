@@ -16,3 +16,7 @@
 //= require pie
 //= require bootstrap-dropdown
 //= require swipe
+//= require g.raphael-min
+//= require g.bar
+//= require d3.v3.min
+//= require d3.layout.cloud
