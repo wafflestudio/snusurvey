@@ -9,6 +9,9 @@ development: &base
 #    app_id: 111159975701312
 #    secret_key: 4444af97c4577a0cfc7d770b0b5f3072
 #    callback: "http://dev.wafflestudio.net:4011/signin/facebook"
+#    app_id: 138586422965317 
+#    secret_key: f6fd708b0391cb1a974b515f76d60b67 
+#    callback: "http://localhost:3000/signin/facebook"
 test:
   <<: *base
 production:

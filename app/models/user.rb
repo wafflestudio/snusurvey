@@ -24,10 +24,10 @@ class User
 
 # relations
   has_many :surveys, :class_name => "Survey", :inverse_of => :admin       # 설문
-  has_many :papers                                # 설문지
+  has_many :papers, :dependent => :destroy                                # 설문지
   has_many :posts, :class_name => "Post", :inverse_of => :admin                                 # 쓴 글
-  has_and_belongs_to_many :like_posts, :class_name => "Post", :inverse_of => :like_uesrs                            # 좋아요 글
-  has_and_belongs_to_many :dislike_posts, :class_name => "Post", :inverse_of => :dislike_uesrs                         # 싫어요 글 
+  has_and_belongs_to_many :like_posts, :class_name => "Post", :inverse_of => :like_users                            # 좋아요 글
+  has_and_belongs_to_many :dislike_posts, :class_name => "Post", :inverse_of => :dislike_users                         # 싫어요 글 
   has_many :comments, :class_name => "Comment", :inverse_of => :admin                              # 댓글 
   has_and_belongs_to_many :like_comments, :class_name => "Comment", :inverse_of => :like_users                         # 좋아요 댓글
   has_and_belongs_to_many :dislike_comments, :class_name => "Comment", :inverse_of => :dislike_users                      # 싫어요 댓글
@@ -35,8 +35,8 @@ class User
 
 # validations
   validates :fbid, :presence => true, :uniqueness => true
-  #validates :name, :presence => true, :uniqueness => true
-  #validates :password, :length => {:minimum => 8}
+  validates :name, :presence => true, :uniqueness => true
+  validates :password, :length => {:minimum => 8}
 
 # callback
   #before_save :encrypt_password
@@ -58,9 +58,11 @@ class User
   def generate_salt
     self.salt = "!$tantara.me!"
   end
+
   def generate_auth_key
     self.auth_key = Digest::SHA512.hexdigest(self.name + Time.now.to_s + "!$tantara.me!")
   end
+
   def encrypt_password
     if self.password == self.password_confirmation
       self.password = User.encrypted_password(self.password)
@@ -69,15 +71,19 @@ class User
       false
     end
   end
+
   def self.encrypted_password(p)
     Digest::SHA512.hexdigest(Time.now.to_s + p + "!$tantara!")
   end
+  
   def self.authenticate(name, password)
     user = User.where(:name => name, :password => User.encrypted_password(password)).first
   end
+  
   def self.authenticate_with_salt(id, salt)
     user = User.where(:_id => id, :salt => salt).first
   end
+  
   def self.fb_link(fbid)
     "https://facebook.com/#{fbid}"
   end

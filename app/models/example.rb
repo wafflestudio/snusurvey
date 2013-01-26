@@ -6,7 +6,7 @@ class Example
   
 # relations
   belongs_to :question
-  has_and_belongs_to_many :replies
+  has_and_belongs_to_many :replies            # OR has_many :replies
   has_many :pictures, :as => :picturable, :dependent => :destroy                                          # 사진
 
 # validations

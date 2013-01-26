@@ -12,7 +12,6 @@ gem 'mongoid-paperclip', :require => "mongoid_paperclip"
 
 # run server
 gem 'thin'
-gem 'eventmachine', '0.12.10'
 
 # facebook-oauth
 gem 'koala'
@@ -39,6 +38,11 @@ end
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+
+group :development do
+	gem 'meta_request'
+end
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

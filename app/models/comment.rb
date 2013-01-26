@@ -10,9 +10,9 @@ class Comment
 
 # relations
   belongs_to :commentable, :polymorphic => true
-  belongs_to :admin, :class_name => "User", :inverse_of => :comments                        # 글쓴이
-  has_and_belongs_to_many :like_users, :class_name => "User", :inverse_of => :like_posts    # 좋아요한 사용자
-  has_and_belongs_to_many :dislike_users, :class_name => "User", :inverse_of => :like_posts # 싫어요한 사용자
+  belongs_to :admin, :class_name => "User", :inverse_of => :comments                              # 글쓴이
+  has_and_belongs_to_many :like_users, :class_name => "User", :inverse_of => :like_comments       # 좋아요한 사용자
+  has_and_belongs_to_many :dislike_users, :class_name => "User", :inverse_of => :dislike_comments # 싫어요한 사용자
 
 # validations
   validates :content, :presence => true
