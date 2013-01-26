@@ -38,4 +38,12 @@ class Survey
     end
     return Paper.create(:user_id => u._id, :survey_id => self._id)
   end
+
+  def self.to_csv(options={})
+    CSV.generate(options) do |csv|
+      all.each do |survey|
+        csv << survey.title
+      end
+    end
+  end
 end

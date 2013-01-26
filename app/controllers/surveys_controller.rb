@@ -1,3 +1,4 @@
+require 'csv'
 class SurveysController < ApplicationController
   before_filter :check_signin, :only => [:new, :create, :show, :update, :reply, :edit, :destroy, :me]
   before_filter :auth_me, :only => [:show, :update, :edit, :destroy]
@@ -20,10 +21,20 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @survyes.to_csv }
+    end
   end
 
   def result
     @survey = Survey.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Survey.to_csv }
+      format.xls
+    end
   end
 
   def update

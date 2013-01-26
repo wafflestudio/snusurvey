@@ -5,17 +5,25 @@ gem 'rails', '3.2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# database
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip"
 
+# run server
 gem 'thin'
 gem 'eventmachine', '0.12.10'
 
+# facebook-oauth
 gem 'koala'
 
+# admin
 gem 'devise'
 gem 'rails_admin'
+
+# print
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
 
 # Gems used only for assets and not required
 # in production environments by default.

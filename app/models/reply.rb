@@ -4,6 +4,7 @@ class Reply
 
 # fields
   field :content, type: String, :default => ""
+  filed :time, type: Integer, :default => 0
 
 # relations
   belongs_to :question      # 질문
